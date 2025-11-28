@@ -24,7 +24,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy built Angular files
 # For Angular 13+ default output path is "dist/<project-name>"
 # Replace <project-name> with actual folder under dist
-COPY --from=build /usr/src/app/dist/angular-15crud /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/angular-15-crud /usr/share/nginx/html
 
 # Expose port 80 (Nginx)
 EXPOSE 80
