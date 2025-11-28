@@ -5,22 +5,15 @@ services:
     image: mongo:6
     container_name: mongo
     restart: always
-    ports:
-      - "27017:27017"
     volumes:
       - mongo_data:/data/db
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: madhan0s73/crud-mean-backend:latest   # from Docker Hub
     container_name: backend
     restart: always
-    env_file:
-      - ./backend/.env
     environment:
-# done
-      MONGO_URL: mongodb://localhost:27017/dd_db
+      MONGO_URL: mongodb://mongo:27017/dd_db
       PORT: 3000
     depends_on:
       - mongo
@@ -28,15 +21,13 @@ services:
       - "3000:3000"
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: madhan0s73/crud-mean-frontend:latest  # from Docker Hub
     container_name: frontend
     restart: always
     depends_on:
       - backend
     ports:
-      - "4200:80"
+      - "8080:80"  # IMPORTANT: matches Nginx reverse proxy
 
 volumes:
   mongo_data:
