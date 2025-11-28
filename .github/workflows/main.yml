@@ -41,7 +41,8 @@ jobs:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
-          script: |
-            cd ~/crud-dd-task-mean-app
-            docker-compose pull
-            docker-compose up -d
+          
+script: |
+  cd ~/crud-dd-task-mean-app
+  docker compose pull
+  docker compose up -d
